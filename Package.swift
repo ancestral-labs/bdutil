@@ -5,8 +5,14 @@ import PackageDescription
 
 let package = Package(
     name: "PhaseCLT",
+    platforms: [.macOS(.v14)],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
+        .package(url: "https://github.com/orchetect/PListKit", from: "2.0.3"),
+        .package(
+            url: "https://github.com/AncestralLabs/PhaseKit.git",
+            branch: "develop"
+        )
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -15,6 +21,11 @@ let package = Package(
             name: "PhaseCLT",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
+                .product(name: "PListKit", package: "plistkit"),
+                .product(name: "PhaseKit", package: "phasekit")
+            ],
+            resources: [
+                .process("Config.plist")
             ]
         ),
     ]

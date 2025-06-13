@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Interfaces</key>
+	<dict>
+		<key>Main</key>
+		<dict>
+			<key>Name</key>
+			<string>phaseclt</string>
+			<key>Version</key>
+			<string>0.0.1</string>
+			<key>Abstract</key>
+			<string>Phase Command Line Tool</string>
+		</dict>
+		<key>Creator</key>
+		<dict>
+			<key>Name</key>
+			<string>create</string>
+			<key>Description</key>
+			<string>Burns the selected OS to the target media device</string>
+		</dict>
+	</dict>
+	<key>Developer</key>
+	<string>Ancestral</string>
+</dict>
+</plist>
