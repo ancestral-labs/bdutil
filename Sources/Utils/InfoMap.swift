@@ -8,6 +8,7 @@
 import Foundation
 import PListKit
 import ArgumentParser
+import Synchronization
 
 public protocol PListCompatible {}
 extension String: PListCompatible {}
@@ -19,18 +20,20 @@ extension Data: PListCompatible {}
 extension Array: PListCompatible where Element: PListCompatible {}
 extension Dictionary: PListCompatible where Key == String, Value: PListCompatible {}
 
-enum Interface: String {
+enum Interface: String, CaseIterable {
     case Main = "Main"
     case Creator = "Creator"
 }
 
 final class InfoMap: Sendable {
     
-    static func loadCommandConfigurationKeys(
-        cli: Interface,
-        conf: CommandConfiguration
-    ) -> CommandConfiguration {
-
+    static let shared = InfoMap()
+    
+    private let mainData = Mutex<[String: String]>([:])
+    private let creatorData = Mutex<[String: String]>([:])
+    
+    private init() {
+        
         guard let url = Bundle.module.url(forResource: "Config", withExtension: "plist") else {
             print("❌ Error al cargar configuración")
             exit(1)
@@ -44,25 +47,40 @@ final class InfoMap: Sendable {
         
         let dictionary = data.root.dict(key: "Interfaces")
         
-        guard let interface = dictionary.dict(key: cli.rawValue).value else {
+        guard let mainInterface = dictionary.dict(key: Interface.Main.rawValue).value else {
             
             print("❌ Error al cargar configuración")
             exit(1)
         }
         
-        let commandName = interface["Name"] as? String ?? conf.commandName
-        let abstract = interface["Abstract"] as? String ?? conf.abstract
-        let discussion = interface["Discussion"] as? String ?? conf.discussion
-        let version = interface["Version"] as? String ?? conf.version
-        let aliases = interface["Aliases"] as? [String] ?? conf.aliases
-        let usage = interface["Usage"] as? String ?? conf.usage
+        mainInterface.forEach { key, value in
+            self.mainData.withLock { dict in
+                dict[key] = value as? String
+            }
+        }
         
-        return CommandConfiguration(
-            commandName: commandName,
-            abstract: abstract,
-            version: version,
-            subcommands: conf.subcommands,
-            defaultSubcommand: conf.defaultSubcommand
-        )
+        guard let creatorInterface = dictionary.dict(key: Interface.Creator.rawValue).value else {
+            
+            print("❌ Error al cargar configuración")
+            exit(1)
+        }
+        
+        creatorInterface.forEach { key, value in
+            self.creatorData.withLock { dict in
+                dict[key] = value as? String
+            }
+        }
+    }
+    
+    func getValueMain(forKey key: String) -> String? {
+        mainData.withLock { dict in
+            dict[key]
+        }
+    }
+    
+    func getValueCreator(forKey key: String) -> String? {
+        creatorData.withLock { dict in
+            dict[key]
+        }
     }
 }

@@ -17,7 +17,7 @@
 		<dict>
 			<key>Name</key>
 			<string>create</string>
-			<key>Description</key>
+			<key>Abstract</key>
 			<string>Burns the selected OS to the target media device</string>
 		</dict>
 	</dict>

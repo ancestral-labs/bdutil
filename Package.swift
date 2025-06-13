@@ -5,7 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "PhaseCLT",
-    platforms: [.macOS(.v14)],
+    platforms: [.macOS(.v15)],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
         .package(url: "https://github.com/orchetect/PListKit", from: "2.0.3"),

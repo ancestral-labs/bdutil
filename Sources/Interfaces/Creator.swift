@@ -9,12 +9,9 @@ import ArgumentParser
 
 struct Creator: AsyncParsableCommand {
     
-    static let configuration = InfoMap.loadCommandConfigurationKeys(
-        cli: .Creator,
-        conf: CommandConfiguration(
-            commandName: "Name",
-            abstract: "Abstract"
-        )
+    static let configuration = CommandConfiguration(
+        commandName: InfoMap.shared.getValueCreator(forKey: "Name") ?? "create",
+        abstract: InfoMap.shared.getValueCreator(forKey: "Abstract") ?? "Burns the selected OS to the target media device"
     )
     
     @Argument(help: "Operating system installation type: dos, unix or macos")
