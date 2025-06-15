@@ -25,7 +25,7 @@ let package = Package(
                 .product(name: "PhaseKit", package: "phasekit")
             ],
             resources: [
-                .process("Config.plist")
+                .process("Properties.plist")
             ]
         ),
     ]

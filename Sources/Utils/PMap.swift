@@ -34,20 +34,20 @@ final class PMap: Sendable {
     
     private init(cli: Interface) {
         
-        guard let url = Bundle.module.url(forResource: "Config", withExtension: "plist") else {
-            handlePropertyError(message: "❌ Impossible to read the property file", code: 1)
+        guard let url = Bundle.module.url(forResource: "Properties", withExtension: "plist") else {
+            handlePropertyError(message: "Property file not found", code: 1)
         }
         
         guard let data = try? DictionaryPList(url: url) else {
             
-            handlePropertyError(message: "❌ Impossible to read the property file", code: 1)
+            handlePropertyError(message: "Property file not reachable", code: 1)
         }
         
         let dictionary = data.root.dict(key: "Interfaces")
         
         guard let dataInterface = dictionary.dict(key: cli.rawValue).value else {
             
-            handlePropertyError(message: "❌ Impossible to read the property file", code: 1)
+            handlePropertyError(message: "Wrong property file format", code: 1)
         }
         
         dataInterface.forEach { key, value in
