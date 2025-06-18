@@ -17,7 +17,7 @@ let package = Package(
         .package(url: "https://github.com/orchetect/PListKit", from: "2.0.3"),
         .package(
             url: "https://github.com/AncestralLabs/PhaseKit.git",
-            branch: "develop"
+            branch: "main"
         )
     ],
     targets: [

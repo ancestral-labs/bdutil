@@ -5,7 +5,7 @@
 
 The tool uses the PhaseKit library that depends on the WimKit library licensed under the LGPL License. At the moment, only WimKit is open source and the only repository that can be distributed with the terms of its license. 
 
-`phaseclt` is under the EULA terms specified in the [LICENSE](./LICENSE.md) file.
+`phaseclt` is under the EULA terms specified in the [LICENSE](LICENSE.md) file.
 
 `phaseclt` uses the [PhaseKit](https://github.com/AncestralLabs/PhaseKit) Swift package for low level bootable media creation, process, and process management.
 
