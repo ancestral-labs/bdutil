@@ -63,7 +63,8 @@ Contributions to `phaseclt` are welcomed and encouraged.
 
 The `phaseclt` project is currently under active development. Its stability, both for consuming the project as a Swift package and the `phaseclt` tool, is only guaranteed within minor versions, such as between 0.1.1 and 0.1.2. Minor version number releases may include breaking changes until we achieve a 1.0.0 release.
 
-### Copyright
+## Copyright
 
 © 2023-2025 Ancestral Labs
+
 All rights reserved
