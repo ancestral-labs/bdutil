@@ -3,9 +3,11 @@
 
 `phaseclt` is a tool that you can use to create bootable media devices on your Mac. It's written in Swift, and optimized for Apple silicon.
 
-The tool uses the PhaseKit library that depends on the WimKit library licensed under the LGPL License. At the moment, only WimKit is open source and the only repository that can be distributed with the terms of its license.
+The tool uses the PhaseKit library that depends on the WimKit library licensed under the LGPL License. At the moment, only WimKit is open source and the only repository that can be distributed with the terms of its license. 
 
-`phaseclt` uses the [phasekit](https://github.com/AncestralLabs/PhaseKit) Swift package for low level bootable media creation, process, and process management.
+`phaseclt` is under the EULA terms specified in the [LICENSE](./LICENSE.md) file.
+
+`phaseclt` uses the [PhaseKit](https://github.com/AncestralLabs/PhaseKit) Swift package for low level bootable media creation, process, and process management.
 
 ```bash
 phaseclt --iso /path/to/file.iso --dev /dev/usb1
@@ -60,3 +62,8 @@ Contributions to `phaseclt` are welcomed and encouraged.
 ## Project Status
 
 The `phaseclt` project is currently under active development. Its stability, both for consuming the project as a Swift package and the `phaseclt` tool, is only guaranteed within minor versions, such as between 0.1.1 and 0.1.2. Minor version number releases may include breaking changes until we achieve a 1.0.0 release.
+
+### Copyright
+
+© 2023-2025 Ancestral Labs
+All rights reserved
