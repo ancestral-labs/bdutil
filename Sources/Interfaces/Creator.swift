@@ -7,20 +7,26 @@
 
 import ArgumentParser
 
+public enum OSTypes: String, ExpressibleByArgument {
+    case dos = "dos"
+    case unix = "unix"
+    case macos = "macos"
+}
+
 struct Creator: AsyncParsableCommand {
     
     static let configuration = CommandConfiguration(
-        commandName: PMap.creator["Name"] ?? "create",
-        abstract: PMap.creator["Abstract"] ?? "Burns the selected OS to the target media device"
+        commandName: PMap.creator[.name],
+        abstract: PMap.creator[.description]
     )
     
-    @Argument(help: "Operating system installation type: dos, unix or macos")
+    @Argument(help: ArgumentHelp(stringLiteral: Constants.argHelpOSType))
     var osType: OSTypes
     
-    @Argument(help: "Disc image or app file path")
+    @Argument(help: ArgumentHelp(stringLiteral: Constants.argHelpImg))
     var image: String
 
-    @Argument(help: "Disk path")
+    @Argument(help: ArgumentHelp(stringLiteral: Constants.argHelpDev))
     var dev: String
     
     func run() async {
@@ -28,10 +34,4 @@ struct Creator: AsyncParsableCommand {
         await Create.run(osType: osType, image: image, dev: dev)
 
     }
-}
-
-public enum OSTypes: String, ExpressibleByArgument {
-    case dos = "dos"
-    case unix = "unix"
-    case macos = "macos"
 }

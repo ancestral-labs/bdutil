@@ -37,25 +37,25 @@ struct Create {
         // TODO Print success
         do {
             
-            print("🔐 Checking user privileges…")
+            print(Constants.statusCheckPrivs)
             try Engine.checkPrivileges()
             
-            print("💿 Mounting image…")
+            print(Constants.statusMountImg)
             try Engine.mountDOSImage(imageURL: URL(filePath: image))
             
-            print("🧹 Formatting device…")
+            print(Constants.statusFormatDev)
             try Engine.formatDeviceForDOS(deviceURL: URL(filePath: dev))
             
-            print("📑 Copying files…")
+            print(Constants.statusCopyFiles)
             try Engine.copyToDevForDOS(imageURL: URL(filePath: image), deviceURL: URL(filePath: dev))
             
-            print("⏹️ Unmounting image…")
+            print(Constants.statusUnmountImg)
             try Engine.unmountDOSImage()
             
-            print("🔌 Ejecting volume…")
+            print(Constants.statusEjectVolume)
             try await Engine.ejectVolume(deviceURL: URL(filePath: dev))
             
-            print("🔥 Bootable media created successfully!")
+            print(Constants.statusSuccess)
             
         } catch let error as EngineError {
             
@@ -69,7 +69,7 @@ struct Create {
                 handleEngineError(message: message, code: code)
             }
         } catch {
-            handleEngineError(message: "Unexpected error", code: 1)
+            handleEngineError(message: Constants.msgUnexpectedError, code: 1)
         }
     }
     
@@ -84,16 +84,16 @@ struct Create {
         // TODO Print success
         do {
                         
-            print("🧹 Formatting device…")
+            print(Constants.statusFormatDev)
             try Engine.formatDeviceForUNIX(deviceURL: URL(filePath: dev))
             
-            print("📑 Copying files…")
+            print(Constants.statusCopyFiles)
             try Engine.copyToDevForUNIX(isoURL: URL(filePath: image), devURL: URL(filePath: dev))
             
-            print("🔌 Ejecting volume…")
+            print(Constants.statusEjectVolume)
             try await Engine.ejectVolume(deviceURL: URL(filePath: dev))
             
-            print("🔥 Bootable media created successfully!")
+            print(Constants.statusSuccess)
             
         } catch let error as EngineError {
             
@@ -107,7 +107,7 @@ struct Create {
                 handleEngineError(message: message, code: code)
             }
         } catch {
-            handleEngineError(message: "Unexpected error", code: 1)
+            handleEngineError(message: Constants.msgUnexpectedError, code: 1)
         }
     }
     
@@ -121,16 +121,16 @@ struct Create {
         // TODO Print success
         do {
                         
-            print("🧹 Formatting device…")
+            print(Constants.statusFormatDev)
             try Engine.formatDeviceForMacOS(deviceURL: URL(filePath: dev))
             
-            print("📑 Copying files…")
+            print(Constants.statusCopyFiles)
             try Engine.copyToDevForMacOS(appURL: URL(filePath: image))
             
-            print("🔌 Ejecting volume…")
+            print(Constants.statusEjectVolume)
             try await Engine.ejectVolume(deviceURL: URL(filePath: dev))
             
-            print("🔥 Bootable media created successfully!")
+            print(Constants.statusSuccess)
             
         } catch let error as EngineError {
             
@@ -144,7 +144,7 @@ struct Create {
                 handleEngineError(message: message, code: code)
             }
         } catch {
-            handleEngineError(message: "Unexpected error", code: 1)
+            handleEngineError(message: Constants.msgUnexpectedError, code: 1)
         }
     }
     

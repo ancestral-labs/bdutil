@@ -10,44 +10,54 @@ import PListKit
 import ArgumentParser
 import Synchronization
 
-public protocol PListCompatible {}
-extension String: PListCompatible {}
-extension Int: PListCompatible {}
-extension Double: PListCompatible {}
-extension Bool: PListCompatible {}
-extension Date: PListCompatible {}
-extension Data: PListCompatible {}
-extension Array: PListCompatible where Element: PListCompatible {}
-extension Dictionary: PListCompatible where Key == String, Value: PListCompatible {}
+public enum Term: CaseIterable {
+    case name
+    case description
+    case version
 
-enum Interface: String, CaseIterable {
-    case Main = "Main"
-    case Creator = "Creator"
+    var key: String {
+        switch self {
+        case .name: return CommandConf.name.rawValue
+        case .description: return CommandConf.abstract.rawValue
+        case .version: return CommandConf.version.rawValue
+        }
+    }
+
+    var defValue: String {
+        switch self {
+        case .name: return Constants.defCommandName
+        case .description: return Constants.defCommandAbstract
+        case .version: return Constants.defCommandVersion
+        }
+    }
 }
 
-final class PMap: Sendable {
+public final class PMap: Sendable {
     
-    static let main = PMap(cli: .Main)
-    static let creator = PMap(cli: .Creator)
+    static let main = PMap(cli: .main)
+    static let creator = PMap(cli: .creator)
     
     private let data = Mutex<[String: String]>([:])
     
-    private init(cli: Interface) {
+    private init(cli: CommandInterface) {
         
-        guard let url = Bundle.module.url(forResource: "Properties", withExtension: "plist") else {
-            handlePropertyError(message: "Property file not found", code: 1)
+        let fileName: String = Constants.propertyFileName
+        let fileExt: String = Constants.propertyFileExtension
+        
+        guard let url = Bundle.module.url(forResource: fileName, withExtension: fileExt) else {
+            handlePropertyError(message: Constants.propertyNFMsg, code: 1)
         }
         
         guard let data = try? DictionaryPList(url: url) else {
             
-            handlePropertyError(message: "Property file not reachable", code: 1)
+            handlePropertyError(message: Constants.propertyNRMsg, code: 1)
         }
         
-        let dictionary = data.root.dict(key: "Interfaces")
+        let dictionary = data.root.dict(key: Constants.propertyCLIDictionary)
         
         guard let dataInterface = dictionary.dict(key: cli.rawValue).value else {
             
-            handlePropertyError(message: "Wrong property file format", code: 1)
+            handlePropertyError(message: Constants.propertyWFMsg, code: 1)
         }
         
         dataInterface.forEach { key, value in
@@ -59,13 +69,7 @@ final class PMap: Sendable {
         }
     }
     
-    subscript(key: String) -> String? {
-        
-        get {
-            
-            return data.withLock { $0[key] }
-        }
-    }
+    subscript(term: Term) -> String { return data.withLock { $0[term.key] ?? term.defValue } }
 }
 
 private func handlePropertyError(message: String, code: Int32) -> Never {
