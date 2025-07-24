@@ -10,9 +10,11 @@ The tool uses the PhaseKit library that depends on the WimKit library licensed u
 `phaseclt` uses the [PhaseKit](https://github.com/AncestralLabs/PhaseKit) Swift package for low level bootable media creation, process, and process management.
 
 ```bash
-phaseclt --iso /path/to/file.iso --dev /dev/usb1
-phaseclt --iso /path/to/file.iso --dev /dev/usb1 --url www.example.com/os.iso
-phaseclt about
+phaseclt create dos /path/to/windows.iso /dev/disk4
+phaseclt create unix /path/to/linux.iso /dev/disk4
+phaseclt create unix /path/to/macos.dmg /dev/disk4
+phaseclt --help
+phaseclt --version
 ```
 
 ## Get started

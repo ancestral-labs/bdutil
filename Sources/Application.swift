@@ -8,13 +8,13 @@
 import ArgumentParser
 
 @main
-struct Main: AsyncParsableCommand {
+struct Application: AsyncParsableCommand {
     
     static let configuration = CommandConfiguration(
         commandName: PMap.main[.name],
         abstract: PMap.main[.description],
         version: PMap.main[.version],
-        subcommands: [Creator.self],
-        defaultSubcommand: Creator.self
+        subcommands: [CreateCommand.self],
+        defaultSubcommand: CreateCommand.self
     )
 }
