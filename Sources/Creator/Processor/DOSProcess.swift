@@ -37,13 +37,11 @@ class DOSProcess: Process {
                     message: Constants.statusMountImg,
                     action: { try Engine.mountDOSImage(imageURL: URL(filePath: image)) }
                 ),
-                // MUST UNMOUNT THE ISO IF FAILS
                 Action(
                     message: Constants.statusFormatDev,
                     action: { try Engine.formatDeviceForDOS(deviceURL: URL(filePath: dev)) },
                     onCatch: { try Engine.unmountDOSImage() }
                 ),
-                // MUST UNMOUNT THE ISO IF FAILS
                 Action(
                     message: Constants.statusCopyFiles,
                     action: { try Engine.copyToDevForDOS(imageURL: URL(filePath: image), deviceURL: URL(filePath: dev)) },
