@@ -34,7 +34,7 @@ class MacOSProcess: Process {
                 ),
                 Action(
                     message: Constants.statusEjectVolume,
-                    action: { try await Engine.ejectVolume(deviceURL: URL(filePath: dev)) }
+                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: dev)) }
                 ),
                 Action(message: Constants.statusSuccess)
             ]

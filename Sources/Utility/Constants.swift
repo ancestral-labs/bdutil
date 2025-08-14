@@ -37,17 +37,17 @@ struct Constants {
     public static let argHelpImg: String = "Disc image or app file path"
     public static let argHelpDev: String = "Disk path"
     
-    public static let startMessageDOS: String = "Creating DOS bootable device…"
-    public static let startMessageUNIX: String = "Creating UNIX bootable device…"
-    public static let startMessageMacOS: String = "Creating macOS bootable device…"
+    public static let startMessageDOS: String = "Creating DOS bootable device"
+    public static let startMessageUNIX: String = "Creating UNIX bootable device"
+    public static let startMessageMacOS: String = "Creating macOS bootable device"
     
-    public static let statusCheckPrivs: String = "Checking user privileges…"
-    public static let statusMountImg: String = "Mounting image…"
-    public static let statusFormatDev: String = "Formatting device…"
-    public static let statusCopyFiles: String = "Copying files…"
-    public static let statusUnmountImg: String = "Unmounting image…"
-    public static let statusEjectVolume: String = "Ejecting volume…"
-    public static let statusSuccess: String = "Finishing bootable media creation…"
+    public static let statusCheckPrivs: String = "Checking user privileges"
+    public static let statusMountImg: String = "Mounting image"
+    public static let statusFormatDev: String = "Formatting device"
+    public static let statusCopyFiles: String = "Copying files"
+    public static let statusUnmountImg: String = "Unmounting image"
+    public static let statusEjectVolume: String = "Ejecting volume"
+    public static let statusSuccess: String = "Finishing bootable media creation"
     
     public static let msgUnexpectedError: String = "Unexpected error"
 }

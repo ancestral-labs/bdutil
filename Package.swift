@@ -27,6 +27,7 @@ let package = Package(
             name: "PhaseCLT",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
+                .product(name: "Spinner", package: "spinner"),
                 .product(name: "PListKit", package: "plistkit"),
                 .product(name: "PhaseKit", package: "phasekit")
             ],

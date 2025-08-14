@@ -8,10 +8,18 @@
 import Foundation
 import Spinner
 import PhaseKit
+import Rainbow
 
 protocol Process {
     
     func burn(image: String, dev: String) async
+}
+
+extension Process {
+    
+    func beep() {
+        print("\u{07}", terminator: "")
+    }
 }
 
 class Action {
@@ -40,9 +48,9 @@ class Scheduler {
     }
     
     func runAll() async {
-        
+                
         // Creates a spinner per action schedule
-        let spins: [Spinner] = actions.map { Spinner(.dots2, $0.message, color: .blue) }
+        let spins: [Spinner] = actions.map { Spinner(.dots2, $0.message, color: .yellow) }
         
         for (action, spin) in zip(actions, spins) {
             
@@ -55,20 +63,20 @@ class Scheduler {
                 
                 switch error {
                 case .notPermitted(let code, let message),
-                        .mount(let code, let message),
+                        .mountImage(let code, let message),
                         .format(let code, let message),
-                        .copy(let code, let message),
-                        .ejectVolume(let code, let message),
-                        .unmountImage(let code, let message):
+                        .copyFiles(let code, let message),
+                        .unmountImage(let code, let message),
+                        .ejectVolume(let code, let message):
                     var textMessage: String = message
                     if textMessage.hasPrefix("\n") { textMessage.removeFirst() }
                     if textMessage.hasSuffix("\n") { textMessage.removeLast() }
-                    spin.error(textMessage)
+                    spin.error("\(action.message): \(textMessage.red)")
                     exit(code)
                 }
             } catch {
                 
-                spin.error(Constants.msgUnexpectedError)
+                spin.error("\(action.message): \(Constants.msgUnexpectedError.red)")
                 exit(1)
             }
             spin.success()

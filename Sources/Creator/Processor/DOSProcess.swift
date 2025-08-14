@@ -37,18 +37,15 @@ class DOSProcess: Process {
                     message: Constants.statusMountImg,
                     action: { try Engine.mountDOSImage(imageURL: URL(filePath: image)) }
                 ),
+                // MUST UNMOUNT THE ISO IF FAILS
                 Action(
                     message: Constants.statusFormatDev,
                     action: { try Engine.formatDeviceForDOS(deviceURL: URL(filePath: dev)) }
                 ),
+                // MUST UNMOUNT THE ISO IF FAILS
                 Action(
                     message: Constants.statusCopyFiles,
-                    action: {
-                        try Engine.copyToDevForDOS(
-                            imageURL: URL(filePath: image),
-                            deviceURL: URL(filePath: dev)
-                        )
-                    }
+                    action: { try Engine.copyToDevForDOS(imageURL: URL(filePath: image), deviceURL: URL(filePath: dev)) }
                 ),
                 Action(
                     message: Constants.statusUnmountImg,
@@ -56,9 +53,14 @@ class DOSProcess: Process {
                 ),
                 Action(
                     message: Constants.statusEjectVolume,
-                    action: { try await Engine.ejectVolume(deviceURL: URL(filePath: dev)) }
+                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: dev)) }
                 ),
-                Action(message: Constants.statusSuccess)
+                Action(
+                    message: Constants.statusSuccess,
+                    action: {
+                        self.beep()
+                    }
+                )
             ]
         ).runAll()
     }
