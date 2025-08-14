@@ -26,15 +26,28 @@ class Action {
     
     let message: String
     let action: (() async throws -> Void)?
+    let onCatch: (() async throws -> Void)?
     
-    init(message: String, action: (() async throws -> Void)? = nil) {
+    init(message: String, action: (() async throws -> Void)? = nil, onCatch: (() async throws -> Void)? = nil) {
         self.message = message
         self.action = action
+        self.onCatch = onCatch
     }
     
     func run() async throws {
-        if let action = action {
-            try await action()
+        
+        do {
+            
+            if let action = action {
+                try await action()
+            }
+        } catch let error {
+            
+            if let onCatch = onCatch {
+                try await onCatch()
+            }
+            
+            throw error
         }
     }
 }
@@ -47,7 +60,7 @@ class Scheduler {
         self.actions = actions
     }
     
-    func runAll() async {
+    func runAll(catch: ((_ error: Error, _ action: Action, _ spin: Spinner) -> Void)? = nil) async {
                 
         // Creates a spinner per action schedule
         let spins: [Spinner] = actions.map { Spinner(.dots2, $0.message, color: .yellow) }
@@ -59,25 +72,11 @@ class Scheduler {
                 spin.start()
                 try await action.run()
                 
-            } catch let error as EngineError {
-                
-                switch error {
-                case .notPermitted(let code, let message),
-                        .mountImage(let code, let message),
-                        .format(let code, let message),
-                        .copyFiles(let code, let message),
-                        .unmountImage(let code, let message),
-                        .ejectVolume(let code, let message):
-                    var textMessage: String = message
-                    if textMessage.hasPrefix("\n") { textMessage.removeFirst() }
-                    if textMessage.hasSuffix("\n") { textMessage.removeLast() }
-                    spin.error("\(action.message): \(textMessage.red)")
-                    exit(code)
-                }
             } catch {
                 
-                spin.error("\(action.message): \(Constants.msgUnexpectedError.red)")
-                exit(1)
+                if let `catch` = `catch` {
+                    `catch`(error, action, spin)
+                }
             }
             spin.success()
         }
