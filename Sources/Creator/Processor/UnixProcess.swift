@@ -9,9 +9,18 @@ import Foundation
 import Spinner
 import PhaseKit
 
-class UnixProcess:Process {
+class UnixProcess: Process {
     
-    func burn(image: String, dev: String) async {
+    let image: String
+    let dev: String
+    
+    init(image: String, dev: String) {
+        self.image = image
+        self.dev = dev
+    }
+    
+    
+    func burn() async {
         // ---------------UNIX-------------------
         
         // TODO NEXT Start progress bar with Progress.swift
@@ -27,20 +36,20 @@ class UnixProcess:Process {
             actions: [
                 Action(
                     message: Constants.statusFormatDev,
-                    action: { try Engine.formatDeviceForUNIX(deviceURL: URL(filePath: dev)) }
+                    action: { try Engine.formatDeviceForUNIX(deviceURL: URL(filePath: self.dev)) }
                 ),
                 Action(
                     message: Constants.statusCopyFiles,
                     action: {
                         try Engine.copyToDevForUNIX(
-                            isoURL: URL(filePath: image),
-                            devURL: URL(filePath: dev)
+                            isoURL: URL(filePath: self.image),
+                            devURL: URL(filePath: self.dev)
                         )
                     }
                 ),
                 Action(
                     message: Constants.statusEjectVolume,
-                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: dev)) }
+                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: self.dev)) }
                 ),
                 Action(message: Constants.statusSuccess)
             ]

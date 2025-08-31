@@ -10,6 +10,9 @@ import Foundation
 public enum CommandInterface: String, CaseIterable {
     case main = "Main"
     case creator = "Creator"
+    case dos = "DOS"
+    case unix = "Unix"
+    case macos = "MacOS"
 }
 
 public enum CommandConf: String, CaseIterable {
@@ -33,7 +36,8 @@ struct Constants {
     public static let propertyNRMsg: String = "Property file not reachable"
     public static let propertyWFMsg: String = "Wrong property file format"
     
-    public static let argHelpOSType: String = "Operating system installation type: dos, unix or macos"
+    public static let argHelpScheme: String = "Partition scheme: gpt or mbr"
+    public static let argHelpFileSystem: String = "File system: fat32 or exfat (fat32 the most compatible)"
     public static let argHelpImg: String = "Disc image or app file path"
     public static let argHelpDev: String = "Disk path"
     
@@ -48,6 +52,8 @@ struct Constants {
     public static let statusUnmountImg: String = "Unmounting image"
     public static let statusEjectVolume: String = "Ejecting volume"
     public static let statusSuccess: String = "Finishing bootable media creation"
+    
+    public static let adviceFormatDev: String = "Most BIOS firmware does not support ExFAT-formatted devices"
     
     public static let msgUnexpectedError: String = "Unexpected error"
 }

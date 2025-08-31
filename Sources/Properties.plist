@@ -4,6 +4,27 @@
 <dict>
 	<key>Interfaces</key>
 	<dict>
+		<key>MacOS</key>
+		<dict>
+			<key>Name</key>
+			<string>macos</string>
+			<key>Abstract</key>
+			<string>Burns the selected MacOS image to the target media device</string>
+		</dict>
+		<key>Unix</key>
+		<dict>
+			<key>Name</key>
+			<string>unix</string>
+			<key>Abstract</key>
+			<string>Burns the selected UNIX like image to the target media device</string>
+		</dict>
+		<key>DOS</key>
+		<dict>
+			<key>Name</key>
+			<string>dos</string>
+			<key>Abstract</key>
+			<string>Burns the selected DOS like image to the target media device</string>
+		</dict>
 		<key>Main</key>
 		<dict>
 			<key>Name</key>

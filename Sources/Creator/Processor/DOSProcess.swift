@@ -8,10 +8,49 @@
 import Foundation
 import PhaseKit
 import Spinner
+import ArgumentParser
+
+public enum SchemeArg: String, ExpressibleByArgument {
+    case gpt = "gpt"
+    case mbr = "mbr"
+    
+    var toScheme: Scheme {
+        switch self {
+        case .gpt: return .gpt
+        case .mbr: return .mbr
+        }
+    }
+}
+
+public enum FileSystemArg: String, ExpressibleByArgument {
+    case fat32 = "fat32"
+    case exfat = "exfat"
+    
+    var toFileSystem: FileSystem {
+        switch self {
+        case .fat32: return .fat32
+        case .exfat: return .exfat
+        }
+    }
+}
 
 class DOSProcess: Process {
     
-    func burn(image: String, dev: String) async {
+    let image: String
+    let dev: String
+    
+    let scheme: SchemeArg
+    let fileSystem: FileSystemArg
+    
+    init(image: String, dev: String, scheme: SchemeArg = .gpt, fileSystem: FileSystemArg = .fat32) {
+        self.image = image
+        self.dev = dev
+        self.scheme = scheme
+        self.fileSystem = fileSystem
+    }
+    
+    
+    func burn() async {
         // ---------------WINDOWS-------------------
         
         // TODO Start progress bar with TerminalUI
@@ -35,16 +74,17 @@ class DOSProcess: Process {
                 ),
                 Action(
                     message: Constants.statusMountImg,
-                    action: { try Engine.mountDOSImage(imageURL: URL(filePath: image)) }
+                    action: { try Engine.mountDOSImage(imageURL: URL(filePath: self.image)) }
                 ),
                 Action(
                     message: Constants.statusFormatDev,
-                    action: { try Engine.formatDeviceForDOS(deviceURL: URL(filePath: dev)) },
+                    action: { try Engine.formatDeviceForDOS(deviceURL: URL(filePath: self.dev), scheme: self.scheme.toScheme, fileSystem: self.fileSystem.toFileSystem) },
+                    advice: Constants.adviceFormatDev,
                     onCatch: { try Engine.unmountDOSImage() }
                 ),
                 Action(
                     message: Constants.statusCopyFiles,
-                    action: { try Engine.copyToDevForDOS(imageURL: URL(filePath: image), deviceURL: URL(filePath: dev)) },
+                    // action: { try Engine.copyToDevForDOS(imageURL: URL(filePath: self.image), deviceURL: URL(filePath: self.dev)) },
                     onCatch: { try Engine.unmountDOSImage() }
                 ),
                 Action(
@@ -53,13 +93,11 @@ class DOSProcess: Process {
                 ),
                 Action(
                     message: Constants.statusEjectVolume,
-                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: dev)) }
+                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: self.dev)) }
                 ),
                 Action(
                     message: Constants.statusSuccess,
-                    action: {
-                        self.beep()
-                    }
+                    action: { self.beep() }
                 )
             ]
         ).runAll(

@@ -36,6 +36,9 @@ public final class PMap: Sendable {
     
     static let main = PMap(cli: .main)
     static let creator = PMap(cli: .creator)
+    static let dos = PMap(cli: .dos)
+    static let unix = PMap(cli: .unix)
+    static let macos = PMap(cli: .macos)
     
     private let data = Mutex<[String: String]>([:])
     

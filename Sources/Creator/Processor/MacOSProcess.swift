@@ -11,7 +11,16 @@ import PhaseKit
 
 class MacOSProcess: Process {
     
-    func burn(image: String, dev: String) async {
+    let image: String
+    let dev: String
+    
+    init(image: String, dev: String) {
+        self.image = image
+        self.dev = dev
+    }
+    
+    
+    func burn() async {
         // ---------------MACOS-------------------
         
             // TODO NEXT Start progress bar with Progress.swift
@@ -26,15 +35,15 @@ class MacOSProcess: Process {
             actions: [
                 Action(
                     message: Constants.statusFormatDev,
-                    action: { try Engine.formatDeviceForMacOS(deviceURL: URL(filePath: dev)) }
+                    action: { try Engine.formatDeviceForMacOS(deviceURL: URL(filePath: self.dev)) }
                 ),
                 Action(
                     message: Constants.statusCopyFiles,
-                    action: { try Engine.copyToDevForMacOS(appURL: URL(filePath: image)) }
+                    action: { try Engine.copyToDevForMacOS(appURL: URL(filePath: self.image)) }
                 ),
                 Action(
                     message: Constants.statusEjectVolume,
-                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: dev)) }
+                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: self.dev)) }
                 ),
                 Action(message: Constants.statusSuccess)
             ]
