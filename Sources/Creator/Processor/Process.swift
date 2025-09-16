@@ -20,8 +20,11 @@ protocol Process {
 
 extension Process {
     
-    func beep() {
-        print("\u{07}", terminator: "")
+    func beep(_ quiet: Bool) {
+        
+        if !quiet {
+            print("\u{07}", terminator: "")
+        }
     }
 }
 

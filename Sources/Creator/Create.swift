@@ -10,12 +10,19 @@ import Spinner
 
 struct Create {
     
-    public static func run(osType: OSTypes, image: String, dev: String, scheme: SchemeArg = .gpt, fileSystem: FileSystemArg = .fat32) async {
+    public static func run(
+        osType: OSTypes,
+        image: String,
+        dev: String,
+        scheme: SchemeArg = .gpt,
+        fileSystem: FileSystemArg = .fat32,
+        quiet: Bool
+    ) async {
                 
         let process: Process = switch osType {
-            case .dos: DOSProcess(image: image, dev: dev, scheme: scheme, fileSystem: fileSystem)
-            case .unix: UnixProcess(image: image, dev: dev)
-            case .macos: MacOSProcess(image: image, dev: dev)
+        case .dos: DOSProcess(image: image, dev: dev, scheme: scheme, fileSystem: fileSystem, quiet: quiet)
+            case .unix: UnixProcess(image: image, dev: dev, quiet: quiet)
+            case .macos: MacOSProcess(image: image, dev: dev, quiet: quiet)
         }
         await process.burn()
     }

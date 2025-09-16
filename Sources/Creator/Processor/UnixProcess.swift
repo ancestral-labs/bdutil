@@ -14,9 +14,12 @@ class UnixProcess: Process {
     let image: String
     let dev: String
     
-    init(image: String, dev: String) {
+    let quiet: Bool
+    
+    init(image: String, dev: String, quiet: Bool) {
         self.image = image
         self.dev = dev
+        self.quiet = quiet
     }
     
     
@@ -51,7 +54,10 @@ class UnixProcess: Process {
                     message: Constants.statusEjectVolume,
                     action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: self.dev)) }
                 ),
-                Action(message: Constants.statusSuccess)
+                Action(
+                    message: Constants.statusSuccess,
+                    action: { self.beep(self.quiet) }
+                )
             ]
         ).runAll()
     }

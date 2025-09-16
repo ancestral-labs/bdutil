@@ -40,6 +40,7 @@ struct Constants {
     public static let argHelpFileSystem: String = "File system: fat32 or exfat (fat32 the most compatible)"
     public static let argHelpImg: String = "Disc image or app file path"
     public static let argHelpDev: String = "Disk path"
+    public static let argQuiet: String = "Avoid beep after creating media"
     
     public static let startMessageDOS: String = "Creating DOS bootable device"
     public static let startMessageUNIX: String = "Creating UNIX bootable device"

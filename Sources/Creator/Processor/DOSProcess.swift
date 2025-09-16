@@ -42,11 +42,14 @@ class DOSProcess: Process {
     let scheme: SchemeArg
     let fileSystem: FileSystemArg
     
-    init(image: String, dev: String, scheme: SchemeArg = .gpt, fileSystem: FileSystemArg = .fat32) {
+    let quiet: Bool
+    
+    init(image: String, dev: String, scheme: SchemeArg = .gpt, fileSystem: FileSystemArg = .fat32, quiet: Bool) {
         self.image = image
         self.dev = dev
         self.scheme = scheme
         self.fileSystem = fileSystem
+        self.quiet = quiet
     }
     
     
@@ -65,6 +68,10 @@ class DOSProcess: Process {
         // TODO Print success
         
         print(Constants.startMessageDOS)
+                
+        let adviceExFAT: String? = fileSystem == .exfat
+                ? Constants.adviceFormatDev
+                : nil
         
         await Scheduler(
             actions: [
@@ -79,7 +86,7 @@ class DOSProcess: Process {
                 Action(
                     message: Constants.statusFormatDev,
                     action: { try Engine.formatDeviceForDOS(deviceURL: URL(filePath: self.dev), scheme: self.scheme.toScheme, fileSystem: self.fileSystem.toFileSystem) },
-                    advice: Constants.adviceFormatDev,
+                    advice: adviceExFAT,
                     onCatch: { try Engine.unmountDOSImage() }
                 ),
                 Action(
@@ -97,7 +104,7 @@ class DOSProcess: Process {
                 ),
                 Action(
                     message: Constants.statusSuccess,
-                    action: { self.beep() }
+                    action: { self.beep(self.quiet) }
                 )
             ]
         ).runAll(

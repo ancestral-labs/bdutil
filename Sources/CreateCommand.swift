@@ -21,6 +21,9 @@ struct CommonParameters: ParsableArguments {
 
     @Argument(help: ArgumentHelp(stringLiteral: Constants.argHelpDev))
     var dev: String
+    
+    @Flag(name: .shortAndLong, help: ArgumentHelp(stringLiteral: Constants.argQuiet))
+    var quiet: Bool = false
 }
 
 extension Application {
@@ -53,7 +56,7 @@ extension Application {
         
         func run() async {
             
-            await Create.run(osType: .dos, image: common.image, dev: common.dev, scheme: scheme, fileSystem: fileSystem)
+            await Create.run(osType: .dos, image: common.image, dev: common.dev, scheme: scheme, fileSystem: fileSystem, quiet: common.quiet)
         }
     }
     
@@ -69,7 +72,7 @@ extension Application {
         
         func run() async {
             
-            await Create.run(osType: .unix, image: common.image, dev: common.dev)
+            await Create.run(osType: .unix, image: common.image, dev: common.dev, quiet: common.quiet)
         }
     }
     
@@ -85,7 +88,7 @@ extension Application {
         
         func run() async {
             
-            await Create.run(osType: .macos, image: common.image, dev: common.dev)
+            await Create.run(osType: .macos, image: common.image, dev: common.dev, quiet: common.quiet)
         }
     }
 }

@@ -14,9 +14,12 @@ class MacOSProcess: Process {
     let image: String
     let dev: String
     
-    init(image: String, dev: String) {
+    let quiet: Bool
+    
+    init(image: String, dev: String, quiet: Bool) {
         self.image = image
         self.dev = dev
+        self.quiet = quiet
     }
     
     
@@ -34,6 +37,10 @@ class MacOSProcess: Process {
         await Scheduler(
             actions: [
                 Action(
+                    message: Constants.statusCheckPrivs,
+                    action: { try Engine.checkPrivileges() }
+                ),
+                Action(
                     message: Constants.statusFormatDev,
                     action: { try Engine.formatDeviceForMacOS(deviceURL: URL(filePath: self.dev)) }
                 ),
@@ -45,7 +52,10 @@ class MacOSProcess: Process {
                     message: Constants.statusEjectVolume,
                     action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: self.dev)) }
                 ),
-                Action(message: Constants.statusSuccess)
+                Action(
+                    message: Constants.statusSuccess,
+                    action: { self.beep(self.quiet) }
+                )
             ]
         ).runAll()
     }
