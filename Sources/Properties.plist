@@ -9,30 +9,30 @@
 			<key>Name</key>
 			<string>macos</string>
 			<key>Abstract</key>
-			<string>Burns the selected MacOS image to the target media device</string>
+			<string>Burns the selected macOS setup app to the target media device</string>
 		</dict>
 		<key>Unix</key>
 		<dict>
 			<key>Name</key>
 			<string>unix</string>
 			<key>Abstract</key>
-			<string>Burns the selected UNIX like image to the target media device</string>
+			<string>Burns the selected UNIX like ISO image to the target media device</string>
 		</dict>
 		<key>DOS</key>
 		<dict>
 			<key>Name</key>
 			<string>dos</string>
 			<key>Abstract</key>
-			<string>Burns the selected DOS like image to the target media device</string>
+			<string>Burns the selected DOS like ISO image to the target media device</string>
 		</dict>
 		<key>Main</key>
 		<dict>
 			<key>Name</key>
-			<string>phaseclt</string>
+			<string>bclt</string>
 			<key>Version</key>
 			<string>0.0.1</string>
 			<key>Abstract</key>
-			<string>Phase Command Line Tool</string>
+			<string>Boot Command Line Tool</string>
 		</dict>
 		<key>Creator</key>
 		<dict>

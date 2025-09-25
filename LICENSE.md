@@ -2,7 +2,7 @@
 
 **Last updated** June 18, 2025
 
-phaseclt is licensed to You (End-User) by Ancestral Laboratories for use only under the terms of this License Agreement.
+bclt is licensed to You (End-User) by Ancestral Laboratories for use only under the terms of this License Agreement.
 
 By downloading the Licensed Application from, and any update thereto (as permitted by this License Agreement), You indicate that You agree to be bound by all of the terms and conditions of this License Agreement, and that You accept this License Agreement. Referred to in this License Agreement as "Services."
 
@@ -10,7 +10,7 @@ The parties of this License Agreement acknowledge that the Services are not a Pa
 
 This License Agreement may not provide for usage rules for the Licensed Application that are in conflict with the latest ("Usage Rules"). Ancestral Laboratories acknowledges that it had the opportunity to review the Usage Rules and this License Agreement is not conflicting with them.
 
-phaseclt, when purchased or downloaded through the Services, is licensed to You for use only under the terms of this License Agreement. The Licensor reserves all rights not expressly granted to You. phaseclt is to be used on devices that operate with.
+bclt, when purchased or downloaded through the Services, is licensed to You for use only under the terms of this License Agreement. The Licensor reserves all rights not expressly granted to You. bclt is to be used on devices that operate with.
 
 ## TABLE OF CONTENTS
 
@@ -35,7 +35,7 @@ phaseclt, when purchased or downloaded through the Services, is licensed to You 
 
 ## 1. THE APPLICATION
 
-phaseclt ("Licensed Application") is a piece of software created to facilitate bootable installer creation on media devices — and customized for mobile devices ("Devices"). It is used to create bootable installers on media devices with a copy of a disc image.
+bclt ("Licensed Application") is a piece of software created to facilitate bootable installer creation on media devices — and customized for mobile devices ("Devices"). It is used to create bootable installers on media devices with a copy of a disc image.
 
 The Licensed Application is not tailored to comply with industry-specific regulations (Health Insurance Portability and Accountability Act (HIPAA), Federal Information Security Management Act (FISMA), etc.), so if your interactions would be subjected to such laws, you may not use this Licensed Application. You may not use the Licensed Application in a way that would violate the Gramm-Leach-Bliley Act (GLBA).
 
@@ -135,7 +135,7 @@ You represent and warrant that You are not located in a country that is subject 
 
 ## 11. CONTACT INFORMATION
 
-For general inquiries, complaints, questions or claims concerning the Licensed Application, please contact via Github at [the issues page](https://github.com/AncestralLabs/PhaseCLT/issues).
+For general inquiries, complaints, questions or claims concerning the Licensed Application, please contact via Github at [the issues page](https://github.com/AncestralLabs/bclt/issues).
 
 ## 12. TERMINATION
 

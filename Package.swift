@@ -4,12 +4,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "PhaseCLT",
+    name: "bclt",
     platforms: [.macOS(.v15)],
     products: [
         .executable(
-            name: "phaseclt",
-            targets: ["PhaseCLT"]
+            name: "bclt",
+            targets: ["bclt"]
         )
     ],
     dependencies: [
@@ -17,21 +17,19 @@ let package = Package(
         // .package(url: "https://github.com/jkandzi/Progress.swift.git", from: "0.4.0"),
         .package(url: "https://github.com/dominicegginton/spinner.git", from: "2.1.0"),
         .package(url: "https://github.com/orchetect/PListKit", from: "2.0.3"),
-        .package(
-            url: "https://github.com/AncestralLabs/PhaseKit.git",
-            branch: "main"
-        )
+        // .package(url: "https://github.com/AncestralLabs/BootKit.git", branch: "main")
+        .package(path: "/Users/ant04x/XcodeProjects/BootKit")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .executableTarget(
-            name: "PhaseCLT",
+            name: "bclt",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser"),
                 .product(name: "Spinner", package: "spinner"),
                 .product(name: "PListKit", package: "plistkit"),
-                .product(name: "PhaseKit", package: "phasekit")
+                .product(name: "BootKit", package: "bootkit")
             ],
             resources: [
                 .process("Properties.plist")

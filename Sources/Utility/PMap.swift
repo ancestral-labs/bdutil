@@ -1,6 +1,6 @@
 //
 //  InfoMap.swift
-//  phaseclt
+//  bclt
 //
 //  Created by Antonio Izquierdo Álvarez on 28/11/23.
 //

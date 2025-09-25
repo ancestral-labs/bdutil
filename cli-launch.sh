@@ -8,5 +8,5 @@
 # open -a Terminal
 
 # Obtiene la ruta del binario compilado
-# open -a Terminal "$(ls -d ~/Library/Developer/Xcode/DerivedData/* | grep 'PhaseCLT-')/Build/Products/Release"
-open -a Terminal "$(ls -d ~/Library/Developer/Xcode/DerivedData/* | grep 'PhaseCLT-')/Build/Products/Debug"
+# open -a Terminal "$(ls -d ~/Library/Developer/Xcode/DerivedData/* | grep 'bclt-')/Build/Products/Release"
+open -a Terminal "$(ls -d ~/Library/Developer/Xcode/DerivedData/* | grep 'bclt-')/Build/Products/Debug"

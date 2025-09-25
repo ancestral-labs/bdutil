@@ -1,12 +1,12 @@
 //
 //  Burner.swift
-//  phaseclt
+//  bclt
 //
 //  Created by Antonio Izquierdo Álvarez on 28/11/23.
 //
 
 import ArgumentParser
-import PhaseKit
+import BootKit
 
 
 public enum OSTypes: String {
