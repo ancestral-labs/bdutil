@@ -16,7 +16,7 @@ let package = Package(
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
         .package(url: "https://github.com/dominicegginton/spinner.git", from: "2.1.0"),
         .package(url: "https://github.com/orchetect/PListKit", from: "2.0.3"),
-        .package(url: "https://github.com/AncestralLabs/BootKit.git", branch: "main")
+        .package(url: "https://github.com/ancestral-labs/BootKit.git", branch: "main")
         // .package(path: "/Users/ant04x/XcodeProjects/BootKit")
     ],
     targets: [
