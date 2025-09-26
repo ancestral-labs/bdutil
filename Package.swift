@@ -14,11 +14,10 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-argument-parser.git", from: "1.2.0"),
-        // .package(url: "https://github.com/jkandzi/Progress.swift.git", from: "0.4.0"),
         .package(url: "https://github.com/dominicegginton/spinner.git", from: "2.1.0"),
         .package(url: "https://github.com/orchetect/PListKit", from: "2.0.3"),
-        // .package(url: "https://github.com/AncestralLabs/BootKit.git", branch: "main")
-        .package(path: "/Users/ant04x/XcodeProjects/BootKit")
+        .package(url: "https://github.com/AncestralLabs/BootKit.git", branch: "main")
+        // .package(path: "/Users/ant04x/XcodeProjects/BootKit")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
