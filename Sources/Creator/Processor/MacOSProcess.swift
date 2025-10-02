@@ -9,15 +9,15 @@ import Foundation
 import Spinner
 import BootKit
 
-class MacOSProcess: Process {
+class MacOSProcess: DarwinProcess {
     
-    let image: String
+    let app: String
     let dev: String
     
     let quiet: Bool
     
-    init(image: String, dev: String, quiet: Bool) {
-        self.image = image
+    init(app: String, dev: String, quiet: Bool) {
+        self.app = app
         self.dev = dev
         self.quiet = quiet
     }
@@ -46,7 +46,7 @@ class MacOSProcess: Process {
                 ),
                 Action(
                     message: Constants.statusCopyFiles,
-                    action: { try Engine.copyToDevForMacOS(appURL: URL(filePath: self.image)) }
+                    action: { try Engine.copyToDevForMacOS(appURL: URL(filePath: self.app)) }
                 ),
                 Action(
                     message: Constants.statusEjectVolume,
@@ -57,6 +57,30 @@ class MacOSProcess: Process {
                     action: { self.beep(self.quiet) }
                 )
             ]
-        ).runAll()
+        ).runAll(
+            catch: { error, action, spin in
+                
+                if let engineError = error as? EngineError {
+                    
+                    switch engineError {
+                    case .notPermitted(let code, let message),
+                            .mountImage(let code, let message),
+                            .format(let code, let message),
+                            .copyFiles(let code, let message),
+                            .unmountImage(let code, let message),
+                            .ejectVolume(let code, let message):
+                        var textMessage: String = message
+                        if textMessage.hasPrefix("\n") { textMessage.removeFirst() }
+                        if textMessage.hasSuffix("\n") { textMessage.removeLast() }
+                        spin.error("\(action.message): \(textMessage.red)")
+                        exit(code)
+                    }
+                } else {
+                    
+                    spin.error("\(action.message): \(Constants.msgUnexpectedError.red)")
+                    exit(1)
+                }
+            }
+        )
     }
 }

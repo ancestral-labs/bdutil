@@ -15,9 +15,17 @@ public enum OSTypes: String {
     case macos = "macos"
 }
 
-struct CommonParameters: ParsableArguments {
+struct StandarParameters: ParsableArguments {
     @Argument(help: ArgumentHelp(stringLiteral: Constants.argHelpImg))
     var image: String
+}
+
+struct DarwinParameters: ParsableArguments {
+    @Argument(help: ArgumentHelp(stringLiteral: Constants.argHelpApp))
+    var app: String
+}
+
+struct CommonParameters: ParsableArguments {
 
     @Argument(help: ArgumentHelp(stringLiteral: Constants.argHelpDev))
     var dev: String
@@ -46,6 +54,9 @@ extension Application {
         )
         
         @OptionGroup()
+        var standar: StandarParameters
+        
+        @OptionGroup()
         var common: CommonParameters
         
         @Option(name: .shortAndLong, help: ArgumentHelp(stringLiteral: Constants.argHelpScheme))
@@ -56,7 +67,7 @@ extension Application {
         
         func run() async {
             
-            await Create.run(osType: .dos, image: common.image, dev: common.dev, scheme: scheme, fileSystem: fileSystem, quiet: common.quiet)
+            await Create.run(osType: .dos, installer: standar.image, dev: common.dev, scheme: scheme, fileSystem: fileSystem, quiet: common.quiet)
         }
     }
     
@@ -68,11 +79,14 @@ extension Application {
         )
         
         @OptionGroup()
+        var standar: StandarParameters
+        
+        @OptionGroup()
         var common: CommonParameters
         
         func run() async {
             
-            await Create.run(osType: .unix, image: common.image, dev: common.dev, quiet: common.quiet)
+            await Create.run(osType: .unix, installer: standar.image, dev: common.dev, quiet: common.quiet)
         }
     }
     
@@ -84,11 +98,14 @@ extension Application {
         )
         
         @OptionGroup()
+        var darwin: DarwinParameters
+        
+        @OptionGroup()
         var common: CommonParameters
         
         func run() async {
             
-            await Create.run(osType: .macos, image: common.image, dev: common.dev, quiet: common.quiet)
+            await Create.run(osType: .macos, installer: darwin.app, dev: common.dev, quiet: common.quiet)
         }
     }
 }

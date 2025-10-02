@@ -12,7 +12,7 @@ struct Create {
     
     public static func run(
         osType: OSTypes,
-        image: String,
+        installer: String,
         dev: String,
         scheme: SchemeArg = .gpt,
         fileSystem: FileSystemArg = .fat32,
@@ -20,9 +20,9 @@ struct Create {
     ) async {
                 
         let process: Process = switch osType {
-        case .dos: DOSProcess(image: image, dev: dev, scheme: scheme, fileSystem: fileSystem, quiet: quiet)
-            case .unix: UnixProcess(image: image, dev: dev, quiet: quiet)
-            case .macos: MacOSProcess(image: image, dev: dev, quiet: quiet)
+        case .dos: DOSProcess(image: installer, dev: dev, scheme: scheme, fileSystem: fileSystem, quiet: quiet)
+            case .unix: UnixProcess(image: installer, dev: dev, quiet: quiet)
+            case .macos: MacOSProcess(app: installer, dev: dev, quiet: quiet)
         }
         await process.burn()
     }

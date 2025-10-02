@@ -12,10 +12,17 @@ import Rainbow
 
 protocol Process {
     
-    var image: String { get }
     var dev: String { get }
     
     func burn() async
+}
+
+protocol StandardProcess: Process {
+    var image: String { get }
+}
+
+protocol DarwinProcess: Process {
+    var app: String { get }
 }
 
 extension Process {

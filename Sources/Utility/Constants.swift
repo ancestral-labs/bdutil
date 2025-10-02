@@ -38,7 +38,8 @@ struct Constants {
     
     public static let argHelpScheme: String = "Partition scheme: gpt or mbr"
     public static let argHelpFileSystem: String = "File system: fat32 or exfat (fat32 the most compatible)"
-    public static let argHelpImg: String = "Disc image or app file path"
+    public static let argHelpImg: String = "Disc image file path"
+    public static let argHelpApp: String = "Installer app file path"
     public static let argHelpDev: String = "Disk path"
     public static let argQuiet: String = "Avoid beep after creating media"
     

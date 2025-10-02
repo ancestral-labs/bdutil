@@ -1,13 +1,13 @@
 
 # `bclt`
 
-`bclt` is a tool that you can use to create bootable media devices on your Mac. It's written in Swift, and optimized for Apple silicon.
+BootKit Command Line Tool, aka `bclt`, is a CLI for create bootable media devices on your Mac. It's written in Swift, and optimized for Apple silicon.
 
 The tool uses the BootKit library that depends on the WimKit library licensed under the LGPL License. At the moment, only WimKit is open source and the only repository that can be distributed with the terms of its license. 
 
 `bclt` is under the EULA terms specified in the [LICENSE](LICENSE.md) file.
 
-`bclt` uses the [BootKit](https://github.com/AncestralLabs/BootKit) Swift package for low level bootable media creation, process, and process management.
+`bclt` uses the [BootKit](https://github.com/ancestral-labs/BootKit) Swift package for low level bootable media creation, process, and process management.
 
 ```bash
 bclt create dos /path/to/windows.iso /dev/disk4 --scheme gpt --file-system fat32
@@ -27,16 +27,16 @@ You need an Apple silicon Mac to run `bclt`.
 
 ### Install or upgrade
 
-If you're installing or upgrading automatically, see the [HomeBrew](https://formulae.brew.sh/ancestral/bclt#default) documentation, searching for `bclt`:
+If you're installing or upgrading automatically, see the [HomeBrew](https://formulae.brew.sh/ancestral-labs/bclt#default) documentation, searching for `bclt`:
 
 ```bash
-brew install ancestral/bclt
+brew install ancestral-labs/bclt
 ```
 ```bash
-brew update ancestral/bclt
+brew update ancestral-labs/bclt
 ```
 
-Install manually the latest signed installer package for `bclt` from the [GitHub release page](https://github.com/AncestralLabs/bclt/releases).
+Install manually the latest signed installer package for `bclt` from the [GitHub release page](https://github.com/ancestral-labs/bclt/releases).
 
 To install the tool, copy the binary and resources in a directory included in the global path of macOS. Enter your administrator password when prompted, to give the brew formula permission to place the installed files under `/usr/local` or updating the path.
 
@@ -45,7 +45,7 @@ To install the tool, copy the binary and resources in a directory included in th
 Use the `uninstall-bclt.sh` script to remove `bclt` from your system. To remove your user data along with the tool, run:
 
 ```bash
-brew uninstall ancestral/bclt
+brew uninstall ancestral-labs/bclt
 ```
 
 To uninstall `bclt` manually, erase the folder where is located the binary and the resources files, usually on manual installations it is located on `/usr/local`.
@@ -55,7 +55,7 @@ To uninstall `bclt` manually, erase the folder where is located the binary and t
 - Take [a guided tour of `bclt`](./Documentation/Tutorial.md) by building, running, and publishing a simple web server image.
 - Learn how to [use various `bclt` features](./Documentation/HowTo.md).
 - Read a brief description and [technical overview](./Documentation/TechnicalOverview.md) of `bclt`.
-- View the project [API documentation](https://AncestralLabs.github.io/bclt/Documentation/).
+- View the project [API documentation](https://ancestral-labs.github.io/bclt/Documentation/).
 
 ## Contributing
 

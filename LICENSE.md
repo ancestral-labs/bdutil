@@ -135,7 +135,7 @@ You represent and warrant that You are not located in a country that is subject 
 
 ## 11. CONTACT INFORMATION
 
-For general inquiries, complaints, questions or claims concerning the Licensed Application, please contact via Github at [the issues page](https://github.com/AncestralLabs/bclt/issues).
+For general inquiries, complaints, questions or claims concerning the Licensed Application, please contact via Github at [the issues page](https://github.com/ancestral-labs/bclt/issues).
 
 ## 12. TERMINATION
 

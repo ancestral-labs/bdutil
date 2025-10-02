@@ -9,7 +9,7 @@ import Foundation
 import Spinner
 import BootKit
 
-class UnixProcess: Process {
+class UnixProcess: StandardProcess {
     
     let image: String
     let dev: String
@@ -38,6 +38,10 @@ class UnixProcess: Process {
         await Scheduler(
             actions: [
                 Action(
+                    message: Constants.statusCheckPrivs,
+                    action: { try Engine.checkPrivileges() }
+                ),
+                Action(
                     message: Constants.statusFormatDev,
                     action: { try Engine.formatDeviceForUNIX(deviceURL: URL(filePath: self.dev)) }
                 ),
@@ -59,6 +63,30 @@ class UnixProcess: Process {
                     action: { self.beep(self.quiet) }
                 )
             ]
-        ).runAll()
+        ).runAll(
+            catch: { error, action, spin in
+                
+                if let engineError = error as? EngineError {
+                    
+                    switch engineError {
+                    case .notPermitted(let code, let message),
+                            .mountImage(let code, let message),
+                            .format(let code, let message),
+                            .copyFiles(let code, let message),
+                            .unmountImage(let code, let message),
+                            .ejectVolume(let code, let message):
+                        var textMessage: String = message
+                        if textMessage.hasPrefix("\n") { textMessage.removeFirst() }
+                        if textMessage.hasSuffix("\n") { textMessage.removeLast() }
+                        spin.error("\(action.message): \(textMessage.red)")
+                        exit(code)
+                    }
+                } else {
+                    
+                    spin.error("\(action.message): \(Constants.msgUnexpectedError.red)")
+                    exit(1)
+                }
+            }
+        )
     }
 }

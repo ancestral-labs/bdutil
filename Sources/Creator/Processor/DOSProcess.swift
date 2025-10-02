@@ -34,7 +34,7 @@ public enum FileSystemArg: String, ExpressibleByArgument {
     }
 }
 
-class DOSProcess: Process {
+class DOSProcess: StandardProcess {
     
     let image: String
     let dev: String
