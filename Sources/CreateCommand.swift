@@ -1,12 +1,12 @@
 //
 //  Burner.swift
-//  bclt
+//  bdutil
 //
 //  Created by Antonio Izquierdo Álvarez on 28/11/23.
 //
 
 import ArgumentParser
-import BootKit
+import BootDriveKit
 
 
 public enum OSTypes: String {
@@ -32,6 +32,13 @@ struct CommonParameters: ParsableArguments {
     
     @Flag(name: .shortAndLong, help: ArgumentHelp(stringLiteral: Constants.argQuiet))
     var quiet: Bool = false
+    
+    func validate() throws {
+        
+        guard Validate.run(path: dev) else {
+            throw ValidationError("El fichero en la ruta '\(dev)' no existe o no es accesible.")
+        }
+    }
 }
 
 extension Application {

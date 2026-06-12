@@ -28,11 +28,11 @@
 		<key>Main</key>
 		<dict>
 			<key>Name</key>
-			<string>bclt</string>
+			<string>bdutil</string>
 			<key>Version</key>
 			<string>0.0.1</string>
 			<key>Abstract</key>
-			<string>Boot Command Line Tool</string>
+			<string>Boot Drive Utility</string>
 		</dict>
 		<key>Creator</key>
 		<dict>

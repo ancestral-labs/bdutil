@@ -1,6 +1,6 @@
 //
 //  InfoMap.swift
-//  bclt
+//  bdutil
 //
 //  Created by Antonio Izquierdo Álvarez on 28/11/23.
 //
