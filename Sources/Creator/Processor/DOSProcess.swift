@@ -56,16 +56,16 @@ class DOSProcess: StandardProcess {
     func burn() async {
         // ---------------WINDOWS-------------------
         
-        // TODO Start progress bar with TerminalUI
-        // TODO Check device and system free space
-        // TODO Mount ISO
-        // TODO Format device partition with FAT32
-        // TODO Copy files from ISO excluding WIM
-        // TODO Check install.wim
-        // TODO Split WIM in 4000 limit
-        // TODO Toggle flag to legacy partition
-        // TODO Finish progress bar with TerminalUI
-        // TODO Print success
+        // Start progress bar with TerminalUI
+        // Check device and system free space
+        // Mount ISO
+        // Format device partition with FAT32
+        // Copy files from ISO excluding WIM
+        // Check install.wim
+        // Split WIM in 4000 limit
+        // Toggle flag to legacy partition
+        // Finish progress bar with TerminalUI
+        // Print success
         
         print(Constants.startMessageDOS)
                 
@@ -91,7 +91,7 @@ class DOSProcess: StandardProcess {
                 ),
                 Action(
                     message: Constants.statusCopyFiles,
-                    // action: { try Engine.copyToDevForDOS(imageURL: URL(filePath: self.image), deviceURL: URL(filePath: self.dev)) },
+                    action: { try Engine.copyToDevForDOS(imageURL: URL(filePath: self.image), deviceURL: URL(filePath: self.dev)) },
                     onCatch: { try Engine.unmountDOSImage() }
                 ),
                 Action(

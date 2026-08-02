@@ -26,11 +26,11 @@ class MacOSProcess: DarwinProcess {
     func burn() async {
         // ---------------MACOS-------------------
         
-            // TODO NEXT Start progress bar with Progress.swift
-        // TODO Burn APP (createinstallmedia)
-        // TODO Toggle flag to legacy partition
-            // TODO Finish progress bar with TerminalUI
-        // TODO Print success
+            // NEXT Start progress bar with Progress.swift
+        // Burn APP (createinstallmedia)
+        // Toggle flag to legacy partition
+            // Finish progress bar with TerminalUI
+        // Print success
             
         print(Constants.startMessageMacOS)
         

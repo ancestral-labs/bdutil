@@ -26,12 +26,12 @@ class UnixProcess: StandardProcess {
     func burn() async {
         // ---------------UNIX-------------------
         
-        // TODO NEXT Start progress bar with Progress.swift
-        // TODO Convert ISO to IMG
-        // TODO Burn IMG (dd)
-        // TODO Toggle flag to legacy partition
-        // TODO Finish progress bar with TerminalUI
-        // TODO Print success
+        // NEXT Start progress bar with Progress.swift
+        // Convert ISO to IMG
+        // Burn IMG (dd)
+        // Toggle flag to legacy partition
+        // Finish progress bar with TerminalUI
+        // Print success
             
         print(Constants.startMessageUNIX)
         
