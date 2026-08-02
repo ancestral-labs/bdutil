@@ -14,7 +14,7 @@ public enum SchemeArg: String, ExpressibleByArgument {
     case gpt = "gpt"
     case mbr = "mbr"
     
-    var toScheme: Scheme {
+    var toScheme: Engine.Scheme {
         switch self {
         case .gpt: return .gpt
         case .mbr: return .mbr
@@ -26,7 +26,7 @@ public enum FileSystemArg: String, ExpressibleByArgument {
     case fat32 = "fat32"
     case exfat = "exfat"
     
-    var toFileSystem: FileSystem {
+    var toFileSystem: Engine.FileSystem {
         switch self {
         case .fat32: return .fat32
         case .exfat: return .exfat
@@ -118,7 +118,8 @@ class DOSProcess: StandardProcess {
                             .format(let code, let message),
                             .copyFiles(let code, let message),
                             .unmountImage(let code, let message),
-                            .ejectVolume(let code, let message):
+                            .ejectVolume(let code, let message),
+                            .listDrives(let code, let message):
                         var textMessage: String = message
                         if textMessage.hasPrefix("\n") { textMessage.removeFirst() }
                         if textMessage.hasSuffix("\n") { textMessage.removeLast() }

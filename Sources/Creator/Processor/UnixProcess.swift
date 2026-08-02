@@ -74,7 +74,8 @@ class UnixProcess: StandardProcess {
                             .format(let code, let message),
                             .copyFiles(let code, let message),
                             .unmountImage(let code, let message),
-                            .ejectVolume(let code, let message):
+                            .ejectVolume(let code, let message),
+                            .listDrives(let code, let message):
                         var textMessage: String = message
                         if textMessage.hasPrefix("\n") { textMessage.removeFirst() }
                         if textMessage.hasSuffix("\n") { textMessage.removeLast() }

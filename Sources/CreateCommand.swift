@@ -36,7 +36,7 @@ struct CommonParameters: ParsableArguments {
     func validate() throws {
         
         guard Validate.run(path: dev) else {
-            throw ValidationError("El fichero en la ruta '\(dev)' no existe o no es accesible.")
+            throw ValidationError("The file '\(dev)' does not exists or is inaccessible.")
         }
     }
 }

@@ -14,7 +14,10 @@ struct Application: AsyncParsableCommand {
         commandName: PMap.main[.name],
         abstract: PMap.main[.description],
         version: PMap.main[.version],
-        subcommands: [CreateCommand.self],
+        subcommands: [
+            CreateCommand.self,
+            ListCommand.self
+        ],
         defaultSubcommand: CreateCommand.self
     )
 }

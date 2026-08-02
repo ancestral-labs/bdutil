@@ -4,6 +4,13 @@
 <dict>
 	<key>Interfaces</key>
 	<dict>
+		<key>Lister</key>
+		<dict>
+			<key>Name</key>
+			<string>list</string>
+			<key>Abstract</key>
+			<string>List the available drives to be burned </string>
+		</dict>
 		<key>MacOS</key>
 		<dict>
 			<key>Name</key>

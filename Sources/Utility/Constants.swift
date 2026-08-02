@@ -9,6 +9,7 @@ import Foundation
 
 public enum CommandInterface: String, CaseIterable {
     case main = "Main"
+    case lister = "Lister"
     case creator = "Creator"
     case dos = "DOS"
     case unix = "Unix"
