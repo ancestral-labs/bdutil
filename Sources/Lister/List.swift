@@ -11,27 +11,27 @@ import BootDriveKit
 struct List {
 
     public static func run() {
-        
+
         do {
-                        
+
             let drives = try Engine.listDrives()
-            
+
             if drives.isEmpty {
-                
-                print("No se encontraron discos físicos externos.")
-                
+
+                print("No external drives found.")
+
             } else {
-                
-                print("Discos externos montados:")
-                
+
+                print("Mounted external drives:")
+
                 for drive in drives {
-                    
+
                     print("- \(drive.name)")
                 }
             }
-            
+
         } catch let error {
-            
+
             print("ERROR: \(error.localizedDescription)")
         }
     }
