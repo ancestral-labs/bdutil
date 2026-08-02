@@ -35,6 +35,31 @@ extension Process {
     }
 }
 
+// Handles the error from Engine, formatting the message from each action.
+func handleEngineError(_ error: Error, _ action: Action, _ spin: Spinner) {
+    if let engineError = error as? EngineError {
+        
+        switch engineError {
+        case .notPermitted(let code, let message),
+                .mountImage(let code, let message),
+                .format(let code, let message),
+                .copyFiles(let code, let message),
+                .unmountImage(let code, let message),
+                .ejectVolume(let code, let message),
+                .listDrives(let code, let message):
+            var textMessage: String = message
+            if textMessage.hasPrefix("\n") { textMessage.removeFirst() }
+            if textMessage.hasSuffix("\n") { textMessage.removeLast() }
+            spin.error("\(action.message): \(textMessage.red)")
+            exit(code)
+        }
+    } else {
+        
+        spin.error("\(action.message): \(Constants.msgUnexpectedError.red)")
+        exit(1)
+    }
+}
+
 class Action {
     
     let message: String
