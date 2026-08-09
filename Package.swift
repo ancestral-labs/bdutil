@@ -36,5 +36,9 @@ let package = Package(
                 .process("Properties.plist")
             ]
         ),
+        .testTarget(
+            name: "bdutilTests",
+            dependencies: ["bdutil"]
+        ),
     ]
 )
