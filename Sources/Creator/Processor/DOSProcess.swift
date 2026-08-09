@@ -85,13 +85,13 @@ class DOSProcess: StandardProcess {
                 ),
                 Action(
                     message: Constants.statusFormatDev,
-                    action: { try Engine.formatDeviceForDOS(deviceURL: URL(filePath: self.dev), scheme: self.scheme.toScheme, fileSystem: self.fileSystem.toFileSystem) },
+                    action: { try Engine.formatDeviceForDOS(deviceURL: URL(filePath: "/dev/\(self.dev)"), scheme: self.scheme.toScheme, fileSystem: self.fileSystem.toFileSystem) },
                     advice: adviceExFAT,
                     onCatch: { try Engine.unmountDOSImage() }
                 ),
                 Action(
                     message: Constants.statusCopyFiles,
-                    action: { try Engine.copyToDevForDOS(imageURL: URL(filePath: self.image), deviceURL: URL(filePath: self.dev)) },
+                    action: { try Engine.copyToDevForDOS(imageURL: URL(filePath: self.image), deviceURL: URL(filePath: "/dev/\(self.dev)")) },
                     onCatch: { try Engine.unmountDOSImage() }
                 ),
                 Action(
@@ -100,7 +100,7 @@ class DOSProcess: StandardProcess {
                 ),
                 Action(
                     message: Constants.statusEjectVolume,
-                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: self.dev)) }
+                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: "/dev/\(self.dev)")) }
                 ),
                 Action(
                     message: Constants.statusSuccess,

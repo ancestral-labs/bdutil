@@ -42,7 +42,7 @@ class MacOSProcess: DarwinProcess {
                 ),
                 Action(
                     message: Constants.statusFormatDev,
-                    action: { try Engine.formatDeviceForMacOS(deviceURL: URL(filePath: self.dev)) }
+                    action: { try Engine.formatDeviceForMacOS(deviceURL: URL(filePath: "/dev/\(self.dev)")) }
                 ),
                 Action(
                     message: Constants.statusCopyFiles,
@@ -50,7 +50,7 @@ class MacOSProcess: DarwinProcess {
                 ),
                 Action(
                     message: Constants.statusEjectVolume,
-                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: self.dev)) }
+                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: "/dev/\(self.dev)")) }
                 ),
                 Action(
                     message: Constants.statusSuccess,

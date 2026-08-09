@@ -18,11 +18,25 @@ public enum OSTypes: String {
 struct StandarParameters: ParsableArguments {
     @Argument(help: ArgumentHelp(stringLiteral: Constants.argHelpImg))
     var image: String
+
+    func validate() throws {
+
+        guard Validate.isReadableFile(path: image) else {
+            throw ValidationError("The image file '\(image)' does not exist or is not readable.")
+        }
+    }
 }
 
 struct DarwinParameters: ParsableArguments {
     @Argument(help: ArgumentHelp(stringLiteral: Constants.argHelpApp))
     var app: String
+
+    func validate() throws {
+
+        guard Validate.isReadableFile(path: app) else {
+            throw ValidationError("The installer app '\(app)' does not exist or is not readable.")
+        }
+    }
 }
 
 struct CommonParameters: ParsableArguments {
@@ -34,9 +48,9 @@ struct CommonParameters: ParsableArguments {
     var quiet: Bool = false
     
     func validate() throws {
-        
-        guard Validate.run(path: dev) else {
-            throw ValidationError("The file '\(dev)' does not exists or is inaccessible.")
+
+        guard Validate.isDiskDevice(dev: dev) else {
+            throw ValidationError("The device '/dev/\(dev)' does not exists or is inaccessible.")
         }
     }
 }

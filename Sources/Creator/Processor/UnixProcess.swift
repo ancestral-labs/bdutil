@@ -43,20 +43,20 @@ class UnixProcess: StandardProcess {
                 ),
                 Action(
                     message: Constants.statusFormatDev,
-                    action: { try Engine.formatDeviceForUNIX(deviceURL: URL(filePath: self.dev)) }
+                    action: { try Engine.formatDeviceForUNIX(deviceURL: URL(filePath: "/dev/\(self.dev)")) }
                 ),
                 Action(
                     message: Constants.statusCopyFiles,
                     action: {
                         try Engine.copyToDevForUNIX(
                             isoURL: URL(filePath: self.image),
-                            devURL: URL(filePath: self.dev)
+                            devURL: URL(filePath: "/dev/\(self.dev)")
                         )
                     }
                 ),
                 Action(
                     message: Constants.statusEjectVolume,
-                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: self.dev)) }
+                    action: { try await Engine.forceEjectVolume(deviceURL: URL(filePath: "/dev/\(self.dev)")) }
                 ),
                 Action(
                     message: Constants.statusSuccess,
