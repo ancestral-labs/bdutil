@@ -10,9 +10,10 @@ The tool uses the BootDriveKit library that depends on the WimKit library licens
 `bdutil` uses the [BootDriveKit](https://github.com/ancestral-labs/BootDriveKit) Swift package for low level bootable media creation, process, and process management.
 
 ```bash
-bdutil create dos /path/to/windows.iso /dev/disk4 --scheme gpt --file-system fat32
-bdutil create unix /Users/ant04x/Downloads/fedora-coreos-41.20250117.3.0-live.x86_64.iso /dev/disx
-bdutil create macos /path/to/macos.dmg /dev/disk4
+bdutil list
+bdutil create dos /path/to/windows.iso disk4 --scheme gpt --file-system fat32
+bdutil create unix /Users/ant04x/Downloads/fedora.iso disk4
+bdutil create macos /path/to/macos.dmg disk4
 bdutil --help
 bdutil --version
 ```
