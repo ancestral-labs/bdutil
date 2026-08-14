@@ -74,7 +74,7 @@ struct CommonParameters: ParsableArguments {
     func validate() throws {
 
         guard Validate.isDiskDevice(dev: dev) else {
-            throw ValidationError("The device '/dev/\(dev)' does not exists or is inaccessible.")
+            throw ValidationError("The device '/dev/\(dev)' does not exist or is inaccessible.")
         }
     }
 }

@@ -34,7 +34,7 @@ If you're installing or upgrading automatically, see the [HomeBrew](https://form
 brew install ancestral-labs/bdutil
 ```
 ```bash
-brew update ancestral-labs/bdutil
+brew upgrade ancestral-labs/bdutil
 ```
 
 Install manually the latest signed installer package for `bdutil` from the [GitHub release page](https://github.com/ancestral-labs/bdutil/releases).

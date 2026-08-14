@@ -75,7 +75,7 @@ struct Constants {
     /// Help text for the installer app argument.
     public static let argHelpApp: String = "Installer app file path"
     /// Help text for the device path argument.
-    public static let argHelpDev: String = "Disk path"
+    public static let argHelpDev: String = "Disk node identifier"
     /// Help text for the quiet flag.
     public static let argQuiet: String = "Avoid beep after creating media"
 

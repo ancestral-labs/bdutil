@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-#  install.sh
+#  cli-launch.sh
 #  bdutil
 #
 #  Created by Antonio Izquierdo Álvarez on 5/6/25.

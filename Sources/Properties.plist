@@ -9,7 +9,7 @@
 			<key>Name</key>
 			<string>list</string>
 			<key>Abstract</key>
-			<string>List the available drives to be burned </string>
+			<string>List the available drives to be burned</string>
 		</dict>
 		<key>MacOS</key>
 		<dict>

@@ -21,7 +21,7 @@ let package = Package(
         .package(url: "https://github.com/dominicegginton/spinner.git", from: "2.1.0"),
         .package(url: "https://github.com/ShawnBaek/Table", exact: "2.1.1"),
         .package(url: "https://github.com/orchetect/PListKit", from: "2.0.3"),
-        .package(url: "https://github.com/ancestral-labs/BootDriveKit.git", branch: "main")
+        .package(url: "https://github.com/ancestral-labs/BootDriveKit.git", from: "0.1.0")
         // .package(path: "/Users/ant04x/XcodeProjects/BootDriveKit")
     ],
     targets: [

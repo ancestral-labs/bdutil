@@ -169,6 +169,7 @@ class Scheduler {
                 if let `catch` = `catch` {
                     `catch`(error, action, spin)
                 }
+                continue
             }
 
             if let advice = action.advice {

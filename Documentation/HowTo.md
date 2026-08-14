@@ -16,7 +16,7 @@ Or download the latest signed installer package from the [GitHub release page](h
 ## How to upgrade `bdutil`
 
 ```bash
-brew update ancestral-labs/bdutil
+brew upgrade ancestral-labs/bdutil
 ```
 
 ## How to uninstall `bdutil`
