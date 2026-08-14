@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  UnixProcess.swift
 //  bdutil
 //
 //  Created by Antonio Izquierdo Álvarez on 3/7/25.
@@ -9,32 +9,36 @@ import Foundation
 import Spinner
 import BootDriveKit
 
+/// Creates bootable Linux/UNIX media from an ISO image.
 class UnixProcess: StandardProcess {
-    
+
     let image: String
     let dev: String
-    
+
     let quiet: Bool
-    
+
+    /// Creates a UNIX media-creation process.
+    ///
+    /// - Parameters:
+    ///   - image: The path to the Linux/UNIX ISO image.
+    ///   - dev: The target disk device identifier.
+    ///   - quiet: Suppresses the completion beep when `true`.
     init(image: String, dev: String, quiet: Bool) {
         self.image = image
         self.dev = dev
         self.quiet = quiet
     }
-    
-    
+
+
+    /// Runs the UNIX media creation pipeline.
+    ///
+    /// The pipeline checks privileges, formats the device, copies the image,
+    /// ejects the volume, and signals success.
     func burn() async {
         // ---------------UNIX-------------------
-        
-        // NEXT Start progress bar with Progress.swift
-        // Convert ISO to IMG
-        // Burn IMG (dd)
-        // Toggle flag to legacy partition
-        // Finish progress bar with TerminalUI
-        // Print success
-            
+
         print(Constants.startMessageUNIX)
-        
+
         await Scheduler(
             actions: [
                 Action(

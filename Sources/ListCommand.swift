@@ -9,17 +9,18 @@ import ArgumentParser
 import BootDriveKit
 
 extension Application {
-    
-    // Definition
+
+    /// The `list` subcommand, which enumerates available external drives.
     struct ListCommand: AsyncParsableCommand {
-        
+
         static let configuration = CommandConfiguration(
             commandName: PMap.lister[.name],
             abstract: PMap.lister[.description]
         )
-        
+
+        /// Runs the drive-listing command.
         func run() {
-            
+
             List.run()
         }
     }

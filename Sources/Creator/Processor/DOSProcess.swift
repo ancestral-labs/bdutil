@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  DOSProcess.swift
 //  bdutil
 //
 //  Created by Antonio Izquierdo Álvarez on 3/7/25.
@@ -10,10 +10,14 @@ import BootDriveKit
 import Spinner
 import ArgumentParser
 
+/// The partition schemes supported for DOS (Windows) bootable media.
 public enum SchemeArg: String, ExpressibleByArgument {
+    /// GUID Partition Table (UEFI).
     case gpt = "gpt"
+    /// Master Boot Record (legacy BIOS).
     case mbr = "mbr"
-    
+
+    /// The corresponding `BootDriveKit` engine scheme.
     var toScheme: Engine.Scheme {
         switch self {
         case .gpt: return .gpt
@@ -22,10 +26,14 @@ public enum SchemeArg: String, ExpressibleByArgument {
     }
 }
 
+/// The file systems supported for DOS (Windows) bootable media.
 public enum FileSystemArg: String, ExpressibleByArgument {
+    /// FAT32 — the most compatible option.
     case fat32 = "fat32"
+    /// ExFAT — less compatible with BIOS firmware.
     case exfat = "exfat"
-    
+
+    /// The corresponding `BootDriveKit` engine file system.
     var toFileSystem: Engine.FileSystem {
         switch self {
         case .fat32: return .fat32
@@ -34,16 +42,25 @@ public enum FileSystemArg: String, ExpressibleByArgument {
     }
 }
 
+/// Creates bootable Windows (DOS/UEFI) media from an ISO image.
 class DOSProcess: StandardProcess {
-    
+
     let image: String
     let dev: String
-    
+
     let scheme: SchemeArg
     let fileSystem: FileSystemArg
-    
+
     let quiet: Bool
-    
+
+    /// Creates a DOS media-creation process.
+    ///
+    /// - Parameters:
+    ///   - image: The path to the Windows ISO image.
+    ///   - dev: The target disk device identifier.
+    ///   - scheme: The partition scheme to apply (defaults to `.gpt`).
+    ///   - fileSystem: The file system to use (defaults to `.fat32`).
+    ///   - quiet: Suppresses the completion beep when `true`.
     init(image: String, dev: String, scheme: SchemeArg = .gpt, fileSystem: FileSystemArg = .fat32, quiet: Bool) {
         self.image = image
         self.dev = dev
@@ -51,28 +68,21 @@ class DOSProcess: StandardProcess {
         self.fileSystem = fileSystem
         self.quiet = quiet
     }
-    
-    
+
+
+    /// Runs the Windows media creation pipeline.
+    ///
+    /// The pipeline checks privileges, mounts the ISO, formats the device,
+    /// copies files, unmounts the image, ejects the volume, and signals success.
     func burn() async {
         // ---------------WINDOWS-------------------
-        
-        // Start progress bar with TerminalUI
-        // Check device and system free space
-        // Mount ISO
-        // Format device partition with FAT32
-        // Copy files from ISO excluding WIM
-        // Check install.wim
-        // Split WIM in 4000 limit
-        // Toggle flag to legacy partition
-        // Finish progress bar with TerminalUI
-        // Print success
-        
+
         print(Constants.startMessageDOS)
-                
+
         let adviceExFAT: String? = fileSystem == .exfat
                 ? Constants.adviceFormatDev
                 : nil
-        
+
         await Scheduler(
             actions: [
                 Action(

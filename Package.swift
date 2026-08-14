@@ -3,6 +3,10 @@
 
 import PackageDescription
 
+/// The Swift Package Manager manifest for the `bdutil` executable.
+///
+/// Declares the macOS platform requirement, external dependencies, the
+/// `bdutil` executable target, and its test target.
 let package = Package(
     name: "bdutil",
     platforms: [.macOS(.v15)],

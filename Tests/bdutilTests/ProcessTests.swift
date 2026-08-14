@@ -10,14 +10,17 @@ import Testing
 
 @testable import bdutil
 
+/// Tests for the `Action` pipeline step.
 struct ActionTests {
 
+    /// Verifies that the message and advice are stored.
     @Test func storesMessageAndAdvice() {
         let action = Action(message: "Doing something", advice: "Be careful")
         #expect(action.message == "Doing something")
         #expect(action.advice == "Be careful")
     }
 
+    /// Verifies that the action closure is executed.
     @Test func runsActionClosure() async throws {
         let ran = MutexBox(false)
         let action = Action(message: "Run") {
@@ -27,12 +30,14 @@ struct ActionTests {
         #expect(ran.get() == true)
     }
 
+    /// Verifies that an action without a closure completes successfully.
     @Test func runsWithoutClosure() async throws {
         // An action with no closure should complete without throwing.
         let action = Action(message: "No-op")
         try await action.run()
     }
 
+    /// Verifies that an error thrown by the action is rethrown.
     @Test func rethrowsActionError() async {
         struct TestError: Error {}
         let action = Action(message: "Fail") {
@@ -43,6 +48,7 @@ struct ActionTests {
         }
     }
 
+    /// Verifies that `onCatch` runs before the error is rethrown.
     @Test func runsOnCatchBeforeRethrowing() async {
         struct TestError: Error {}
         let caught = MutexBox(false)
@@ -57,6 +63,7 @@ struct ActionTests {
         #expect(caught.get() == true)
     }
 
+    /// Verifies that `onCatch` is not invoked on success.
     @Test func doesNotRunOnCatchOnSuccess() async throws {
         let caught = MutexBox(false)
         let action = Action(
@@ -68,6 +75,7 @@ struct ActionTests {
         #expect(caught.get() == false)
     }
 
+    /// Verifies that an error thrown by `onCatch` takes precedence.
     @Test func rethrowsOnCatchError() async {
         struct TestError: Error {}
         struct CatchError: Error {}
@@ -82,8 +90,10 @@ struct ActionTests {
     }
 }
 
+/// Tests for the `Scheduler` pipeline runner.
 struct SchedulerTests {
 
+    /// Verifies that the scheduler retains its actions in order.
     @Test func storesActions() {
         let actions = [Action(message: "A"), Action(message: "B")]
         let scheduler = Scheduler(actions: actions)

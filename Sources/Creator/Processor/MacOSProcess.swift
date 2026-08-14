@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  MacOSProcess.swift
 //  bdutil
 //
 //  Created by Antonio Izquierdo Álvarez on 3/7/25.
@@ -9,31 +9,36 @@ import Foundation
 import Spinner
 import BootDriveKit
 
+/// Creates bootable macOS installer media from an installer app or DMG.
 class MacOSProcess: DarwinProcess {
-    
+
     let app: String
     let dev: String
-    
+
     let quiet: Bool
-    
+
+    /// Creates a macOS media-creation process.
+    ///
+    /// - Parameters:
+    ///   - app: The path to the macOS installer app or DMG.
+    ///   - dev: The target disk device identifier.
+    ///   - quiet: Suppresses the completion beep when `true`.
     init(app: String, dev: String, quiet: Bool) {
         self.app = app
         self.dev = dev
         self.quiet = quiet
     }
-    
-    
+
+
+    /// Runs the macOS media creation pipeline.
+    ///
+    /// The pipeline checks privileges, formats the device, copies the installer
+    /// app, ejects the volume, and signals success.
     func burn() async {
         // ---------------MACOS-------------------
-        
-            // NEXT Start progress bar with Progress.swift
-        // Burn APP (createinstallmedia)
-        // Toggle flag to legacy partition
-            // Finish progress bar with TerminalUI
-        // Print success
-            
+
         print(Constants.startMessageMacOS)
-        
+
         await Scheduler(
             actions: [
                 Action(
