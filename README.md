@@ -3,11 +3,9 @@
 
 Boot Drive Utility, aka `bdutil`, is a command-line tool for create bootable media devices on your Mac. It's written in Swift, and optimized for Apple silicon.
 
-The tool uses the BootDriveKit library that depends on the WimKit library licensed under the LGPL License. At the moment, only WimKit is open source and the only repository that can be distributed with the terms of its license. 
+The tool uses the [BootDriveKit](https://github.com/ancestral-labs/BootDriveKit) Swift package for low level bootable media creation, process, and process management. BootDriveKit is a proprietary component of Ancestral Labs, licensed under its own End User License Agreement (EULA), and is not distributed as part of this project.
 
-`bdutil` is under the EULA terms specified in the [LICENSE](LICENSE.md) file.
-
-`bdutil` uses the [BootDriveKit](https://github.com/ancestral-labs/BootDriveKit) Swift package for low level bootable media creation, process, and process management.
+`bdutil` is licensed under the [Apache License, Version 2.0](LICENSE).
 
 ```bash
 bdutil list
@@ -60,7 +58,7 @@ To uninstall `bdutil` manually, erase the folder where is located the binary and
 
 ## Contributing
 
-Contributions to `bdutil` are welcomed and encouraged.
+Contributions to `bdutil` are welcomed and encouraged. Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on how to get started.
 
 ## Project Status
 
@@ -70,4 +68,4 @@ The `bdutil` project is currently under active development. Its stability, both 
 
 © 2023-2026 Ancestral Labs
 
-All rights reserved
+Licensed under the Apache License, Version 2.0.
