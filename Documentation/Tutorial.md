@@ -50,7 +50,7 @@ Options:
 `bdutil create unix` writes a Linux distribution ISO (Fedora, Ubuntu, Debian, etc.) to the device, making it bootable on both PCs and supported Macs:
 
 ```bash
-bdutil create unix /Users/ant04x/Downloads/fedora.iso disk4
+bdutil create unix ~/Downloads/fedora.iso disk4
 ```
 
 ## Step 4 — Create a bootable macOS installer USB
@@ -75,4 +75,4 @@ During creation, `bdutil` reports each stage: checking privileges, mounting the 
 
 © 2023-2026 Ancestral Labs
 
-All rights reserved
+Licensed under the Apache License, Version 2.0.

@@ -97,4 +97,4 @@ bdutil --version
 
 © 2023-2026 Ancestral Labs
 
-All rights reserved
+Licensed under the Apache License, Version 2.0.

@@ -60,7 +60,7 @@ For macOS users searching for "`wimlib imagex` on macOS", "create Windows bootab
 
 ## Licensing
 
-- `bdutil` is distributed under the EULA terms in [LICENSE](../LICENSE.md).
+- `bdutil` is distributed under the EULA terms in [LICENSE](../LICENSE).
 - WimKit is open source under the LGPL license and is currently the only component whose repository can be distributed under those terms.
 
 ## Project status
@@ -78,4 +78,4 @@ The project is under active development. Stability is only guaranteed within min
 
 © 2023-2026 Ancestral Labs
 
-All rights reserved
+Licensed under the Apache License, Version 2.0.

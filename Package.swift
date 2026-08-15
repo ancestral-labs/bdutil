@@ -36,7 +36,7 @@ let package = Package(
         .package(url: "https://github.com/ShawnBaek/Table", exact: "2.1.1"),
         .package(url: "https://github.com/orchetect/PListKit", from: "2.0.3"),
         .package(url: "https://github.com/ancestral-labs/BootDriveKit.git", from: "0.1.2")
-        // .package(path: "/Users/ant04x/XcodeProjects/BootDriveKit")
+        // .package(path: "~/XcodeProjects/BootDriveKit")
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.

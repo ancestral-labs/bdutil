@@ -9,9 +9,9 @@ The tool uses the [BootDriveKit](https://github.com/ancestral-labs/BootDriveKit)
 
 ```bash
 bdutil list
-bdutil create dos /path/to/windows.iso disk4 --scheme gpt --file-system fat32
-bdutil create unix /Users/ant04x/Downloads/fedora.iso disk4
-bdutil create macos /path/to/macos.dmg disk4
+bdutil create dos ~/Downloads/windows.iso disk4 --scheme gpt --file-system fat32
+bdutil create unix ~/Downloads/fedora.iso disk4
+bdutil create macos "/Applications/macOS Sequoia (v15).app" disk4
 bdutil --help
 bdutil --version
 ```
