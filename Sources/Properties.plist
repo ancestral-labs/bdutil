@@ -37,7 +37,7 @@
 			<key>Name</key>
 			<string>bdutil</string>
 			<key>Version</key>
-			<string>0.1.0</string>
+			<string>0.1.1</string>
 			<key>Abstract</key>
 			<string>Boot Drive Utility</string>
 		</dict>
