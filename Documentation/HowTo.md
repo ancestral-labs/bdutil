@@ -8,7 +8,9 @@ Task-oriented recipes for `bdutil` (Boot Drive Utility), the macOS CLI for creat
 With Homebrew:
 
 ```bash
-brew install ancestral-labs/bdutil
+brew trust ancestral-labs/tap
+brew tap ancestral-labs/tap
+brew install bdutil
 ```
 
 Or download the latest signed installer package from the [GitHub release page](https://github.com/ancestral-labs/bdutil/releases) and copy the binary and resources into a directory in your `PATH` (for example `/usr/local`).
@@ -16,13 +18,13 @@ Or download the latest signed installer package from the [GitHub release page](h
 ## How to upgrade `bdutil`
 
 ```bash
-brew upgrade ancestral-labs/bdutil
+brew upgrade bdutil
 ```
 
 ## How to uninstall `bdutil`
 
 ```bash
-brew uninstall ancestral-labs/bdutil
+brew uninstall bdutil
 ```
 
 For manual installations, delete the folder containing the binary and resource files (usually under `/usr/local`).

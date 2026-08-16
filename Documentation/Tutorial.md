@@ -15,7 +15,7 @@ A step-by-step guided tour of `bdutil` (Boot Drive Utility), the macOS command-l
 
 - An Apple silicon Mac (M1, M2, M3, M4 or newer).
 - macOS 15 (Sequoia) or newer.
-- `bdutil` installed via Homebrew (`brew install ancestral-labs/bdutil`) or the signed installer package from the [GitHub release page](https://github.com/ancestral-labs/bdutil/releases).
+- `bdutil` installed via Homebrew (`brew trust ancestral-labs/tap && brew tap ancestral-labs/tap && brew install bdutil`) or the signed installer package from the [GitHub release page](https://github.com/ancestral-labs/bdutil/releases).
 - A USB flash drive of at least 8 GB (16 GB recommended for Windows 11 images).
 - A source image: a Windows ISO, a Linux ISO, or a macOS installer app / DMG.
 
